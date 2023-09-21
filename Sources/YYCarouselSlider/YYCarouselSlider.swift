@@ -31,6 +31,26 @@ public struct YYPagingSlider<Content: View,TitleContent: View,Item: RandomAccess
     @ViewBuilder public var content: (Binding<Item.Element>) -> Content
     @ViewBuilder public var titleContent: (Binding<Item.Element>) -> TitleContent
     
+    
+    public init(
+        titleContentScrollSpeed: CGFloat = 0.6,
+        showIndicator: ScrollIndicatorVisibility = .hidden,
+        showPagingControl: Bool = true,
+        pagingControlSpacing: CGFloat = 20,
+        spacing: CGFloat = 10,
+        data: Binding<Item>,
+        content: @escaping (Binding<Item.Element>) -> Content,
+        titleContent: @escaping (Binding<Item.Element>) -> TitleContent) {
+        self.titleContentScrollSpeed = titleContentScrollSpeed
+        self.showIndicator = showIndicator
+        self.showPagingControl = showPagingControl
+        self.pagingControlSpacing = pagingControlSpacing
+        self.spacing = spacing
+        _data = data
+        self.content = content
+        self.titleContent = titleContent
+    }
+    
     @State private var activeId: UUID?
     public var body: some View {
         VStack(spacing: pagingControlSpacing) {

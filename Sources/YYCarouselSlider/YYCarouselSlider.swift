@@ -7,9 +7,9 @@ import SwiftUI
 public struct YYSliderDataModel: Identifiable {
     private(set) public var id: UUID = .init()
     
-    var color: Color
-    var title: String
-    var subTitle: String
+    public var color: Color
+    public var title: String
+    public var subTitle: String
     
     public init(color: Color, title: String, subTitle: String) {
         self.color = color
@@ -21,15 +21,15 @@ public struct YYSliderDataModel: Identifiable {
 @available(iOS 17.0,*)
 public struct YYPagingSlider<Content: View,TitleContent: View,Item: RandomAccessCollection>: View where Item: MutableCollection,Item.Element: Identifiable {
     
-    var titleContentScrollSpeed: CGFloat = 0.6
-    var showIndicator: ScrollIndicatorVisibility = .hidden
-    var showPagingControl: Bool = true
-    var pagingControlSpacing: CGFloat = 20
-    var spacing: CGFloat = 10
+    public var titleContentScrollSpeed: CGFloat = 0.6
+    public var showIndicator: ScrollIndicatorVisibility = .hidden
+    public var showPagingControl: Bool = true
+    public var pagingControlSpacing: CGFloat = 20
+    public var spacing: CGFloat = 10
     
-    @Binding var data: Item
-    @ViewBuilder var content: (Binding<Item.Element>) -> Content
-    @ViewBuilder var titleContent: (Binding<Item.Element>) -> TitleContent
+    @Binding public var data: Item
+    @ViewBuilder public var content: (Binding<Item.Element>) -> Content
+    @ViewBuilder public var titleContent: (Binding<Item.Element>) -> TitleContent
     
     @State private var activeId: UUID?
     public var body: some View {

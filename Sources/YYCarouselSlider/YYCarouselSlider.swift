@@ -10,6 +10,12 @@ public struct YYSliderDataModel: Identifiable {
     var color: Color
     var title: String
     var subTitle: String
+    
+    public init(color: Color, title: String, subTitle: String) {
+        self.color = color
+        self.title = title
+        self.subTitle = subTitle
+    }
 }
 
 @available(iOS 17.0,*)
@@ -124,10 +130,10 @@ struct YYPagingControl: UIViewRepresentable {
 struct TestView: View {
     
     @State private var items:[YYSliderDataModel] = [
-        .init(color: .red, title: "Hello World", subTitle: "First App for iOS 17"),
-        .init(color: .green, title: "Hello SwiftUI", subTitle: "SwiftUI is an Amazing Language"),
-        .init(color: .yellow, title: "Hello iOS17", subTitle: "iOS 17 gives a shit"),
-        .init(color: .purple, title: "Hello World", subTitle: "First App for iOS 17"),
+        .init(color: .red, title: "Hello World", subTitle: "iOS 17"),
+        .init(color: .green, title: "Hello SwiftUI", subTitle: "SwiftUI is Amazing"),
+        .init(color: .yellow, title: "Hello iOS 17", subTitle: "iOS 17 gives us muti-feature"),
+        .init(color: .purple, title: "Hello Developers", subTitle: "The best experience of dev"),
     ]
     
     var body: some View {

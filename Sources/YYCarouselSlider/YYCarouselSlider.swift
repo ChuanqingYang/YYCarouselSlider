@@ -64,6 +64,7 @@ public struct YYPagingSlider<Content: View,TitleContent: View,Item: RandomAccess
                                     content
                                         .offset(x: scrollOffset(geometryProxy))
                                 }
+                            
                             content(item)
                         }
                         .containerRelativeFrame(.horizontal)
@@ -100,6 +101,28 @@ public struct YYPagingSlider<Content: View,TitleContent: View,Item: RandomAccess
     func scrollOffset(_ proxy: GeometryProxy) -> CGFloat {
         let minX = proxy.bounds(of: .scrollView)?.minX ?? 0
         return -minX * min(titleContentScrollSpeed, 1.0)
+    }
+}
+
+@available(iOS 17.0, *)
+extension YYPagingSlider where TitleContent == EmptyView {
+    public init(
+        titleContentScrollSpeed: CGFloat = 0.6,
+        showIndicator: ScrollIndicatorVisibility = .hidden,
+        showPagingControl: Bool = true,
+        pagingControlSpacing: CGFloat = 20,
+        spacing: CGFloat = 10,
+        data: Binding<Item>,
+        content: @escaping (Binding<Item.Element>) -> Content
+        ) {
+        self.titleContentScrollSpeed = titleContentScrollSpeed
+        self.showIndicator = showIndicator
+        self.showPagingControl = showPagingControl
+        self.pagingControlSpacing = pagingControlSpacing
+        self.spacing = spacing
+        _data = data
+        self.content = content
+        self.titleContent = { _ in EmptyView()}
     }
 }
 
@@ -157,6 +180,7 @@ struct TestView: View {
     ]
     
     var body: some View {
+        
         YYPagingSlider(data: $items) { $item in
             RoundedRectangle(cornerRadius: 15)
                 .fill(item.color.gradient)
